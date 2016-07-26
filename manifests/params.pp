@@ -13,7 +13,6 @@ class powerdns::params {
         'local-address' => $::ipaddress,
         'master' => 'yes',
         'slave' => 'no',
-        'recursor' => '127.0.0.1',
       }
     }
 
