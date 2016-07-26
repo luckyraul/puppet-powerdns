@@ -4,7 +4,7 @@ class powerdns::server::config (
     $path   = $powerdns::params::server_config_path,
   )
 {
-  $result = deep_merge({ '' => $config}, $powerdns::params::server_config_default)
+  $result = deep_merge($powerdns::params::server_config_default, { '' => $config})
   $defaults = { 'path' => $path }
   create_ini_settings($result, $defaults)
 }
