@@ -7,8 +7,8 @@ class powerdns::params {
     $server_config_path = '/etc/powerdns/pdns.conf'
     $server_config_default = {
       '' => {
-        'allow-recursion' => '127.0.0.1',
         'config-dir' => '/etc/powerdns',
+        'daemon' => 'yes'
         'guardian' => 'yes',
         'local-address' => $::ipaddress,
         'master' => 'yes',
