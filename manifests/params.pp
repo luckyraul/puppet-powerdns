@@ -4,7 +4,9 @@ class powerdns::params {
     $server_ensure = 'latest'
     $server_service_ensure = 'running'
     $server_service_enable = true
-    $server_config_path = '/etc/powerdns/pdns.conf'
+    $config_dir = '/etc/powerdns'
+    $include_dir = "${config_dir}/pdns.d"
+    $server_config_path = "${config_dir}/pdns.conf"
     $server_config_default = {
       '' => {
         'config-dir' => '/etc/powerdns',
