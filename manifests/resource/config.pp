@@ -5,7 +5,8 @@ define powerdns::resource::config (
 ) {
 
   file {"${powerdns::params::include_dir}/${name}.conf":
-      ensure => $ensure,
+      ensure  => $ensure,
+      require => Package['powerdns-server']
   }
 
   $defaults = { 'path' => "${powerdns::params::include_dir}/${name}.conf", require => File["${powerdns::params::include_dir}/${name}.conf"] }
