@@ -8,7 +8,7 @@ class powerdns::params {
     $server_config_default = {
       '' => {
         'config-dir' => '/etc/powerdns',
-        'daemon' => 'yes'
+        'daemon' => 'yes',
         'guardian' => 'yes',
         'local-address' => $::ipaddress,
         'master' => 'yes',
