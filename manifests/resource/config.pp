@@ -3,7 +3,7 @@ define powerdns::resource::config (
   $ensure      = 'present',
   $config_hash = {}
 ) {
-  
+
   file {"${powerdns::params::include_dir}/${name}.conf":
       ensure => $ensure,
   }
