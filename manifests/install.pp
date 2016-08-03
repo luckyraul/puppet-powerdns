@@ -4,8 +4,8 @@ class powerdns::install (
     $version = $powerdns::version
   ) {
 
+    include apt
     if $version != '3.0' {
-      include apt
       apt::key { 'powerdns':
         ensure => $ensure,
         id     => $powerdns::params::apt_key_id,
