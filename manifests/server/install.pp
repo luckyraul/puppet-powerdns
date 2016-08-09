@@ -4,6 +4,7 @@ class powerdns::server::install (
     $ensure       = $powerdns::server_ensure,
     $backends     = $powerdns::server_backends,
     $package_name = $powerdns::server_package_name,
+    $user         = $powerdns::params::server_user,
     $data_dir     = $powerdns::params::data_dir,
     $location     = $powerdns::params::apt_location,
     $repo         = $powerdns::params::server_apt_repo,
@@ -29,9 +30,13 @@ class powerdns::server::install (
     } ->
     file { $data_dir:
       ensure => directory,
+      owner  => $user,
+      group  => $user,
     } ->
     file { "${data_dir}/zones":
       ensure => directory,
+      owner  => $user,
+      group  => $user,
     }
 
     Exec['apt_update'] -> Package['powerdns-server']

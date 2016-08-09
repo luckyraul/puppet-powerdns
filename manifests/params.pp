@@ -5,6 +5,7 @@ class powerdns::params {
     $server_service_ensure = 'running'
     $server_service_enable = true
     $config_dir = '/etc/powerdns'
+    $server_user = 'pdns'
 
     $data_dir = '/var/lib/powerdns'
     $include_dir = "${config_dir}/pdns.d"
