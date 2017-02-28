@@ -50,7 +50,7 @@ class powerdns (
     if $docker {
       file {'/entrypoint.sh':
         ensure  => file,
-        content => template('entrypoint.sh.erb'),
+        content => template('powerdns/entrypoint.sh.erb'),
         mode    => '0755',
         owner   => root,
         group   => root,
