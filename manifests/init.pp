@@ -16,6 +16,8 @@ class powerdns (
     $recursor_service_enable = $powerdns::params::recursor_service_enable,
     $recursor_package_name   = $powerdns::params::recursor_package_name,
 
+    $docker                  = false,
+
     ) inherits powerdns::params
 {
     validate_string($version)
@@ -43,6 +45,16 @@ class powerdns (
 
       Class['powerdns::install'] -> Class['powerdns::recursor::install']
       Class['powerdns::recursor::service'] -> Anchor['powerdns::end']
+    }
+
+    if $docker {
+      file {'/entrypoint.sh':
+        ensure  => file,
+        content => template('entrypoint.sh.erb'),
+        mode    => '0755',
+        owner   => root,
+        group   => root,
+      }
     }
 
     anchor { 'powerdns::end':}
