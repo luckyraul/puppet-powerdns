@@ -42,10 +42,17 @@ class powerdns::params {
             case $::lsbdistcodename {
                 'jessie': {
                     $server_package_name = 'pdns-server'
-                    $server_apt_repo = 'jessie-auth-40'
+                    $server_apt_repo = 'jessie-auth-41'
 
                     $recursor_package_name = 'pdns-recursor'
-                    $recursor_apt_repo = 'jessie-rec-40'
+                    $recursor_apt_repo = 'jessie-rec-41'
+                }
+                'stretch': {
+                    $server_package_name = 'pdns-server'
+                    $server_apt_repo = 'stretch-auth-41'
+
+                    $recursor_package_name = 'pdns-recursor'
+                    $recursor_apt_repo = 'jessie-rec-41'
                 }
                 default: {
                     fail("Unsupported release: ${::lsbdistcodename}")
