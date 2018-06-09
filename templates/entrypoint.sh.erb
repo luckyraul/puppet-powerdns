@@ -13,12 +13,15 @@ if [[ "x"$MODE_SQLITE != "x" ]]; then
     cp /usr/share/pdns-backend-sqlite3/pdns.local.gsqlite3.conf /etc/powerdns/pdns.d/pdns.local.gsqlite3.conf
     if [ ! -f /var/lib/powerdns/pdns.sqlite3 ]; then
       sqlite3 /var/lib/powerdns/pdns.sqlite3 < /usr/share/doc/pdns-backend-sqlite3/schema.sqlite3.sql
-      chown pdns:pdns /var/lib/powerdns/pdns.sqlite3
     fi
+    chmod 777 /var/lib/powerdns
+    chown -R pdns:pdns /var/lib/powerdns
 fi
 
 if [[ "x"$MODE_SLAVE != "x" && "x"$MODE_BIND != "x" ]]; then
     touch /var/lib/powerdns/named-superslave.conf
+    chmod 777 /var/lib/powerdns
+    mkdir /var/lib/powerdns/zones
     chown -R pdns:pdns /var/lib/powerdns
     echo "options {
     directory \"/var/lib/powerdns\";
