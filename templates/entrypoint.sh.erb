@@ -18,10 +18,20 @@ if [[ "x"$MODE_SQLITE != "x" ]]; then
     chown -R pdns:pdns /var/lib/powerdns
 fi
 
+if [[ "x"$MODE_MYSQL != "x" ]]; then
+   cp /usr/share/pdns-backend-mysql/pdns.local.gmysql.conf /etc/powerdns/pdns.d/pdns.local.gmysql.conf
+   MYSQL_PORT=${MYSQL_PORT:-3306}
+   sed "s/_DBC_DBSERVER_/$MYSQL_HOST/" -i /etc/powerdns/pdns.d/pdns.local.gmysql.conf
+   sed "s/_DBC_DBPORT_/$MYSQL_PORT/" -i /etc/powerdns/pdns.d/pdns.local.gmysql.conf
+   sed "s/_DBC_DBNAME_/$MYSQL_DB/" -i /etc/powerdns/pdns.d/pdns.local.gmysql.conf
+   sed "s/_DBC_DBUSER_/$MYSQL_USER/" -i /etc/powerdns/pdns.d/pdns.local.gmysql.conf
+   sed "s/_DBC_DBPASS_/$MYSQL_PWD/" -i /etc/powerdns/pdns.d/pdns.local.gmysql.conf
+fi
+
 if [[ "x"$MODE_SLAVE != "x" && "x"$MODE_BIND != "x" ]]; then
     touch /var/lib/powerdns/named-superslave.conf
     chmod 777 /var/lib/powerdns
-    mkdir /var/lib/powerdns/zones
+    mkdir -p /var/lib/powerdns/zones
     chown -R pdns:pdns /var/lib/powerdns
     echo "options {
     directory \"/var/lib/powerdns\";
