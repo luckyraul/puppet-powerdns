@@ -9,6 +9,9 @@ define powerdns::resource::config (
       require => Package['powerdns-server']
   }
 
-  $defaults = { 'path' => "${powerdns::params::include_dir}/${name}.conf", require => File["${powerdns::params::include_dir}/${name}.conf"] }
+  $defaults = {
+    'path' => "${powerdns::params::include_dir}/${name}.conf",
+    require => File["${powerdns::params::include_dir}/${name}.conf"]
+  }
   create_ini_settings({'' => $config_hash}, $defaults)
 }

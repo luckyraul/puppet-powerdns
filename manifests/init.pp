@@ -1,31 +1,24 @@
 # == Class: powerdns
 class powerdns (
-    $version                 = '4.0',
-    $server                  = true,
-    $server_config           = {},
-    $server_backends         = [],
-    $server_ensure           = $powerdns::params::server_ensure,
+    String $version          = '4.2',
+    Boolean $server          = true,
+    Hash $server_config      = {},
+    Array $server_backends   = [],
+    String $server_ensure    = $powerdns::params::server_ensure,
     $server_service_ensure   = $powerdns::params::server_service_ensure,
     $server_service_enable   = $powerdns::params::server_service_enable,
     $server_package_name     = $powerdns::params::server_package_name,
 
-    $recursor                = false,
-    $recursor_config         = {},
+    Boolean $recursor        = false,
+    Hash $recursor_config    = {},
     $recursor_ensure         = $powerdns::params::recursor_ensure,
     $recursor_service_ensure = $powerdns::params::recursor_service_ensure,
     $recursor_service_enable = $powerdns::params::recursor_service_enable,
     $recursor_package_name   = $powerdns::params::recursor_package_name,
 
-    $docker                  = false,
+    Boolean $docker          = false,
 
-    ) inherits powerdns::params
-{
-    validate_string($version)
-    validate_bool($server)
-    if $server {
-      validate_string($server_ensure)
-      validate_array($server_backends)
-    }
+    ) inherits powerdns::params {
 
     anchor { 'powerdns::begin':} -> class { 'powerdns::install': }
 

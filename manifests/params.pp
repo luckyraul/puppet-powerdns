@@ -40,6 +40,13 @@ class powerdns::params {
     case $::operatingsystem {
         'Debian': {
             case $::lsbdistcodename {
+                'buster': {
+                    $server_package_name = 'pdns-server'
+                    $server_apt_repo = 'buster-auth-42'
+
+                    $recursor_package_name = 'pdns-recursor'
+                    $recursor_apt_repo = 'buster-rec-42'
+                }
                 'jessie': {
                     $server_package_name = 'pdns-server'
                     $server_apt_repo = 'jessie-auth-41'
@@ -49,10 +56,10 @@ class powerdns::params {
                 }
                 'stretch': {
                     $server_package_name = 'pdns-server'
-                    $server_apt_repo = 'stretch-auth-41'
+                    $server_apt_repo = 'stretch-auth-42'
 
                     $recursor_package_name = 'pdns-recursor'
-                    $recursor_apt_repo = 'jessie-rec-41'
+                    $recursor_apt_repo = 'stretch-rec-42'
                 }
                 default: {
                     fail("Unsupported release: ${::lsbdistcodename}")
