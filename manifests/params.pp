@@ -18,6 +18,7 @@ class powerdns::params {
         'local-address' => $::ipaddress,
         'master' => 'yes',
         'slave' => 'no',
+        'query-cache-ttl' => 20,
       }
     }
 
