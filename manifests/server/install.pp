@@ -27,14 +27,16 @@ class powerdns::server::install (
     } ->
     package { $backends:
         ensure => $ensure,
-    } ->
-    file { $data_dir:
+    } -> file { $data_dir:
       ensure => directory,
       owner  => $user,
       group  => $user,
-    } ->
-    file { "${data_dir}/zones":
+    } -> file { "${data_dir}/zones":
       ensure => directory,
+      owner  => $user,
+      group  => $user,
+    } -> file { "${data_dir}/supermaster.conf":
+      ensure => present,
       owner  => $user,
       group  => $user,
     }
