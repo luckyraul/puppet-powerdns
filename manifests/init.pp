@@ -1,6 +1,6 @@
 # == Class: powerdns
 class powerdns (
-    String $version          = '4.2',
+    String $version          = '4.5',
     Boolean $server          = true,
     Hash $server_config      = {},
     Array $server_backends   = [],

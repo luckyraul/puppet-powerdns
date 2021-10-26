@@ -41,19 +41,19 @@ class powerdns::params {
     case $::operatingsystem {
         'Debian': {
             case $::lsbdistcodename {
+                'bullseye': {
+                    $server_package_name = 'pdns-server'
+                    $server_apt_repo = 'bullseye-auth-45'
+
+                    $recursor_package_name = 'pdns-recursor'
+                    $recursor_apt_repo = 'bullseye-rec-45'
+                }
                 'buster': {
                     $server_package_name = 'pdns-server'
                     $server_apt_repo = 'buster-auth-42'
 
                     $recursor_package_name = 'pdns-recursor'
                     $recursor_apt_repo = 'buster-rec-42'
-                }
-                'jessie': {
-                    $server_package_name = 'pdns-server'
-                    $server_apt_repo = 'jessie-auth-41'
-
-                    $recursor_package_name = 'pdns-recursor'
-                    $recursor_apt_repo = 'jessie-rec-41'
                 }
                 'stretch': {
                     $server_package_name = 'pdns-server'
