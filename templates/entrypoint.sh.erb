@@ -29,15 +29,10 @@ if [[ "x"$MODE_MYSQL != "x" ]]; then
 fi
 
 if [[ "x"$MODE_SLAVE != "x" && "x"$MODE_BIND != "x" ]]; then
-    touch /var/lib/powerdns/named-superslave.conf
+    touch /var/lib/powerdns/supermaster.conf
     chmod 777 /var/lib/powerdns
-    mkdir -p /var/lib/powerdns/zones
+    mkdir -p /var/lib/powerdns/zones.slave.d
     chown -R pdns:pdns /var/lib/powerdns
-    echo "options {
-    directory \"/var/lib/powerdns\";
-};
-include \"named-superslave.conf\";
-    " >> /etc/powerdns/bindbackend.conf
     echo "$SUPERMASTER_1 ns1" > /etc/powerdns/supermasters.conf
 
     if [[ "x"$SUPERMASTER_2 != "x" ]]; then
