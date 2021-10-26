@@ -5,6 +5,6 @@ class powerdns::recursor::config (
   )
 {
   $result = deep_merge($powerdns::params::recursor_config_default, { '' => $config})
-  $defaults = { 'path' => $path }
+  $defaults = { 'path' => $path, 'require' => Package['powerdns-recursor'] }
   inifile::create_ini_settings($result, $defaults)
 }
