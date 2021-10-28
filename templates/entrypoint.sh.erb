@@ -10,7 +10,7 @@ if [[ "x"$API != "x" ]]; then
 fi
 
 if [[ "x"$MODE_SQLITE != "x" ]]; then
-    cp /usr/share/pdns-backend-sqlite3/pdns.local.gsqlite3.conf /etc/powerdns/pdns.d/pdns.local.gsqlite3.conf
+    cp /usr/share/doc/pdns-backend-sqlite3/examples/gsqlite3.conf /etc/powerdns/pdns.d/pdns.local.gsqlite3.conf
     if [ ! -f /var/lib/powerdns/pdns.sqlite3 ]; then
       sqlite3 /var/lib/powerdns/pdns.sqlite3 < /usr/share/doc/pdns-backend-sqlite3/schema.sqlite3.sql
     fi
@@ -19,13 +19,13 @@ if [[ "x"$MODE_SQLITE != "x" ]]; then
 fi
 
 if [[ "x"$MODE_MYSQL != "x" ]]; then
-   cp /usr/share/pdns-backend-mysql/pdns.local.gmysql.conf /etc/powerdns/pdns.d/pdns.local.gmysql.conf
+   cp /usr/share/doc/pdns-backend-mysql/examples/gmysql.conf /etc/powerdns/pdns.d/pdns.local.gmysql.conf
    MYSQL_PORT=${MYSQL_PORT:-3306}
-   sed "s/_DBC_DBSERVER_/$MYSQL_HOST/" -i /etc/powerdns/pdns.d/pdns.local.gmysql.conf
-   sed "s/_DBC_DBPORT_/$MYSQL_PORT/" -i /etc/powerdns/pdns.d/pdns.local.gmysql.conf
-   sed "s/_DBC_DBNAME_/$MYSQL_DB/" -i /etc/powerdns/pdns.d/pdns.local.gmysql.conf
-   sed "s/_DBC_DBUSER_/$MYSQL_USER/" -i /etc/powerdns/pdns.d/pdns.local.gmysql.conf
-   sed "s/_DBC_DBPASS_/$MYSQL_PWD/" -i /etc/powerdns/pdns.d/pdns.local.gmysql.conf
+   sed "s/_DBSERVER_/$MYSQL_HOST/" -i /etc/powerdns/pdns.d/pdns.local.gmysql.conf
+   sed "s/_DBPORT_/$MYSQL_PORT/" -i /etc/powerdns/pdns.d/pdns.local.gmysql.conf
+   sed "s/_DBNAME_/$MYSQL_DB/" -i /etc/powerdns/pdns.d/pdns.local.gmysql.conf
+   sed "s/_DBUSER_/$MYSQL_USER/" -i /etc/powerdns/pdns.d/pdns.local.gmysql.conf
+   sed "s/_DBPASS_/$MYSQL_PWD/" -i /etc/powerdns/pdns.d/pdns.local.gmysql.conf
 fi
 
 if [[ "x"$MODE_SLAVE != "x" && "x"$MODE_BIND != "x" ]]; then
