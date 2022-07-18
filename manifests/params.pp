@@ -43,24 +43,24 @@ class powerdns::params {
             case $::lsbdistcodename {
                 'bullseye': {
                     $server_package_name = 'pdns-server'
-                    $server_apt_repo = 'bullseye-auth-45'
+                    $server_apt_repo = 'bullseye-auth-46'
 
                     $recursor_package_name = 'pdns-recursor'
-                    $recursor_apt_repo = 'bullseye-rec-45'
+                    $recursor_apt_repo = 'bullseye-rec-46'
                 }
                 'buster': {
                     $server_package_name = 'pdns-server'
-                    $server_apt_repo = 'buster-auth-42'
+                    $server_apt_repo = 'buster-auth-46'
 
                     $recursor_package_name = 'pdns-recursor'
-                    $recursor_apt_repo = 'buster-rec-42'
+                    $recursor_apt_repo = 'buster-rec-46'
                 }
                 'stretch': {
                     $server_package_name = 'pdns-server'
-                    $server_apt_repo = 'stretch-auth-42'
+                    $server_apt_repo = 'stretch-auth-44'
 
                     $recursor_package_name = 'pdns-recursor'
-                    $recursor_apt_repo = 'stretch-rec-42'
+                    $recursor_apt_repo = 'stretch-rec-44'
                 }
                 default: {
                     fail("Unsupported release: ${::lsbdistcodename}")
